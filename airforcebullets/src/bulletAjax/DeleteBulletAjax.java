@@ -32,6 +32,7 @@ public class DeleteBulletAjax extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//comment
 		BulletDAO bulletdao = new BulletDAOImpl();
 		String ids = request.getParameter("ids");
 		String[] arrayIds = ids.split(",");
