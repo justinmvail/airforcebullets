@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+
+
+
+    <Resource
+        name="jdbc/db" 
+        type="javax.sql.DataSource"
+        maxActive="100" 
+        maxIdle="30" 
+        maxWait="10000" 
+        url="jdbc:mysql://localhost:3306/airforcebullets"
+        driverClassName="com.mysql.jdbc.Driver"
+        username="root" 
+        password="sesame"        
+    />
+    
+     
+<!--     <Resource -->
+<!--         name="jdbc/db"  -->
+<!--         type="javax.sql.DataSource" -->
+<!--         maxActive="100"  -->
+<!--         maxIdle="30"  -->
+<!--         maxWait="10000"  -->
+<!--         url="jdbc:mysql://mysql1001.mochahost.com/justin_airforcebullets" -->
+<!--         driverClassName="com.mysql.jdbc.Driver" -->
+<!--         username="justin_user"  -->
+<!--         password="1qaz2wsx#EDC$RFV" -->
+<!-- 		testOnBorrow="true" -->
+<!--         validationQuery="SELECT 1" -->
+<!--         validationInterval="30000"	 -->
+<!--     />  -->
+
+
+
+</Context>

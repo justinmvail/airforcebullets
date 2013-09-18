@@ -1,0 +1,63 @@
+html {
+overflow: -moz-scrollbars-vertical; 
+overflow-y: scroll;
+}
+
+* { margin:0; padding:0; }
+body {
+	font: 72.5%/1.7em "Lucida Grande", "Lucida Sans Unicode", verdana, geneva, sans-serif;
+	color:#555;
+	background: #fff url(./images/headerbg.gif) repeat-x;
+}
+
+/* general styling */
+a { color:#007898; background: inherit; text-decoration:none; }
+a:hover { color: #808080; background: inherit; }
+a:focus { outline: 0; }
+ul { margin:10px 10px 10px 0; padding:0 0 0 15px; }
+li { margin:0 0 0 10px; padding:3px; }
+img { border: 0; text-decoration: none; }
+
+/* content */
+.wrap { padding:0 10px 10px 10px; width:930px; margin:0 auto; }
+#logo {float:left; margin: 26px 20px 14px 0px; color:#768998; }
+h1 { margin: 0 0 10px; letter-spacing: 1px; font-size: 2em; }
+h1 a { color: #fff; }
+h1 a:hover { color: #FFFCB3; }
+	
+/* main navigation */
+#nav { float:right; border:none; padding:0; margin: 45px 10px 30px 0;}
+#nav li { float:left; list-style:none; margin:0 4px 0 0; padding:0; font-size: 1.1em; }
+#nav li a { display:block; padding: 10px 0 15px; color:#768998; text-decoration:none; border: 0; margin:0 1px 0 20px; }
+#nav li a:hover, #nav li a.current { color:#fff; }	
+	.akey { border-bottom: 1px dotted #4B5761; }
+	
+.blueButton {
+width:100px;
+background-color:#335566;
+color:#fff;
+border:1px solid #999;
+cursor:pointer;
+*border:1px;
+font-weight:bold;
+padding:2px
+}
+.blueButton:hover {background-color:#1f3850;}
+
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+.ui-autocomplete {
+    max-height: 150px;
+    overflow-y: auto;    
+    overflow-x: hidden;
+ }
+
+/* main content */
+#left { float: left; width: 930px; margin: 0 0 20px 0; }
+#left h2 { float: left; font: 2.1em "Trebuchet MS", Arial; background: url(./images/h2bg.gif) repeat-x bottom; color:#121212; letter-spacing:-1px; margin: 0px 10 20px 0; }
+#left h2 a { color:#121212; text-decoration:none; border: 0; }
+#left p { clear: both; margin: 5px 0 20px 0; font-size:110%; line-height:21px;}
+
+#footer { clear: both; border-top: 1px solid #ccc; padding: 20px 0; color:#808080; }
+#footer p { line-height: 2.5em; } 
