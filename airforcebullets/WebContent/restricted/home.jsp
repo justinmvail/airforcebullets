@@ -38,7 +38,7 @@
 		    <p>Welcome to Air Force Bullets.</p>
 		        <table>
 		        	<tr>
-		        		<td colspan = "3">
+		        		<td colspan = "3" style="padding:0px 5px 15px 5px">
 			        	<div id="notificationAccordion">  
 			        		<h3>Notifications</h3> 			        		
 			        		<div id="notificationTableDiv"></div> 

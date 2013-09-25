@@ -352,36 +352,36 @@ public class UserDAOImpl implements UserDAO {
 	
 
 	public boolean canSignIn(String email, String password) throws SQLException {
-//		Connection conn = ConnectionManager.getInstance().getConnection();
-//		PreparedStatement ps = conn.prepareStatement(
-//				" SELECT user.userID"+
-//				" FROM user" +
-//				" WHERE user.email=?" +
-//				" AND user.password=?" +
-//				" AND user.active=1");		
-//		ps.setString(1, email);	
-//		ps.setString(2, password);
-//		ResultSet rs = ps.executeQuery();		
-//		while(rs.next()){
-//			conn.close();
-//			return true;
-//		}
-//		conn.close();
-//		return false;
-		
 		Connection conn = ConnectionManager.getInstance().getConnection();
 		PreparedStatement ps = conn.prepareStatement(
 				" SELECT user.userID"+
 				" FROM user" +
-				" WHERE user.email=?");		
-		ps.setString(1, email);
+				" WHERE user.email=?" +
+				" AND user.password=?" +
+				" AND user.active=1");		
+		ps.setString(1, email);	
+		ps.setString(2, password);
 		ResultSet rs = ps.executeQuery();		
 		while(rs.next()){
 			conn.close();
 			return true;
 		}
 		conn.close();
-		return false;		
+		return false;
+		
+//		Connection conn = ConnectionManager.getInstance().getConnection();
+//		PreparedStatement ps = conn.prepareStatement(
+//				" SELECT user.userID"+
+//				" FROM user" +
+//				" WHERE user.email=?");		
+//		ps.setString(1, email);
+//		ResultSet rs = ps.executeQuery();		
+//		while(rs.next()){
+//			conn.close();
+//			return true;
+//		}
+//		conn.close();
+//		return false;		
 	}	
 	
 	public boolean isEmailTaken(String email) throws SQLException {

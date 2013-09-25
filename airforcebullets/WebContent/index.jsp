@@ -13,6 +13,8 @@
 		<meta http-equiv="expires" content="0" />
 		<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 		<meta http-equiv="pragma" content="no-cache" />
+		<link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" /> 
     	<%@include file="./includes/signHeaderImport.html" %>
 		<style>
 		table, td, th{
@@ -92,7 +94,7 @@
 					        	<input type="submit" class="blueButton" value="Sign Up">
 					        </form>
 					        <br>
-					        <img border="0" src="./images/emblem.jpg" width="115" height="115">				        
+					        <img border="0" src="./images/emblem.jpg" width="225" height="115">				        
 					    </td>
 					</tr>
 				</table> 
