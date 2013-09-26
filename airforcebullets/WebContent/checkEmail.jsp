@@ -14,14 +14,15 @@
         <%@include file="./includes/signHeaderImport.html" %>
     </head>
     <body>	
+    	<%
+    	String message = (String) request.getAttribute("message"); 
+    	String text = (String) request.getAttribute("text");
+    	%>
 		<div class="wrap">
 		<%@ include file="./includes/signHeader.jsp"%>
 		    <div id="left"><!-- all of the page content goes here.-->
-		        <h2>Activate Your Account</h2>
-		        <p>Thank you for signing up for Air Force Bullets!  An email has been sent to your
-		         Air Force email account.  To activate your account, log into your Air Force email
-		         account and open the message you have received from Air Force Bullets.  Inside, you 
-		         will find a link that will activate your account.</p>
+		        <h2><%=message%></h2>
+		        <p><%=text%></p>
 		    </div>
 		    <%@ include file="./includes/footer.html"%>	
 		</div>

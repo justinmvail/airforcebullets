@@ -3,7 +3,7 @@
 <%User user = (User)request.getSession(true).getAttribute("user");
   String displayName = user.getDisplayName();%>
 	<div id="logo">
-		<h1><a href="./home.jsp" title="Home">AIR FORCE BULLETS - BETA</a></h1>
+		<h1><a href="./home.jsp" title="Home">AIR FORCE BULLETS</a></h1>
 		<p><%=displayName%></p>
 	</div>
 	<ul id="nav">

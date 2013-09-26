@@ -30,7 +30,7 @@ public class AuthorizationFilter implements Filter {
         HttpSession session = request.getSession(false);
 
         if (session == null || session.getAttribute("user") == null) {
-            response.sendRedirect(request.getContextPath() + "/index.jsp"); // No logged-in user found, so redirect to login page.
+            response.sendRedirect(request.getContextPath()); // No logged-in user found, so redirect to login page.
         } else {
             chain.doFilter(req, res); // Logged-in user found, so just continue request.
         }

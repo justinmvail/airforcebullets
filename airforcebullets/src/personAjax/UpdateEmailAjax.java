@@ -50,7 +50,8 @@ public class UpdateEmailAjax extends HttpServlet {
 		String password = request.getParameter("password");		
 		String email = request.getParameter("email");
 		
-		String dbPassword ="";				
+		String dbPassword ="";	
+		boolean emailTaken = false;
 		UserDAO userdao = new UserDAOImpl();
 		String passwordHash = Hasher.getHash(password);				
 		User user = (User) request.getSession().getAttribute("user");
@@ -59,44 +60,48 @@ public class UpdateEmailAjax extends HttpServlet {
 		
 		try {
 			dbPassword = userdao.getPassword(user);
+			emailTaken = userdao.isEmailTaken(email);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		if(dbPassword.equals(passwordHash)){
-			try {
-				user.setEmail(email);
-				user.setIdHash(hashedPrimaryKey);
-				userdao.update(user);
-				userdao.deactivateUser(user);
-				request.getSession().setAttribute("user",user);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				String link = "<a href=" + "'" + Constants.WEB_ADDRESS
-						+ "/ActivationServlet" + "?id=" + hashedPrimaryKey + "'"
-						+ ">Activate</a>";
-				Emailer.sendEmail(user.getEmail(), Constants.EMAIL_WELCOME,
-						Constants.EMAIL_MESSAGE + link, Constants.EMAIL_ADDRESS,
-						Constants.EMAIL_PASSWORD);
-				out.write(Constants.EMPTY_JSON);
-			}catch(Exception e){
-				user.setEmail(oldEmail);
-				try {
-					userdao.update(user);
-					userdao.activateUser(Hasher.getHash(user.getId()));
-					out.write("{\"error\":\"Your email could not be updated.  If the problem persists, please use the contact page to report the bug.\"}");
-					return;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}				
-			}
-			//out.write(Constants.EMPTY_JSON);
-		}else{
+		if(!dbPassword.equals(passwordHash)){
 			out.write("{\"error\":\"You have entered the wrong Password.  You may not update your password until you provide the correct old Password.\"}");
-		}	
+			return;
+		}
+		if(emailTaken){
+			out.write("{\"error\":\"You have entered an email address that is already taken.  You must choose an email that is available.  If you think this is an error, use the contact page to report it.\"}");
+			return;
+		}
+		try {
+			user.setEmail(email);
+			user.setIdHash(hashedPrimaryKey);
+			userdao.update(user);
+			userdao.deactivateUser(user);
+			request.getSession().setAttribute("user",null);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			String link = "<a href=" + "'" + Constants.WEB_ADDRESS
+					+ "/ActivationServlet" + "?id=" + hashedPrimaryKey + "'"
+					+ ">Activate</a>";
+			Emailer.sendEmail(user.getEmail(), Constants.EMAIL_WELCOME,
+					Constants.EMAIL_MESSAGE + link, Constants.EMAIL_ADDRESS,
+					Constants.EMAIL_PASSWORD);
+			out.write(Constants.EMPTY_JSON);
+		}catch(Exception e){
+			user.setEmail(oldEmail);
+			try {
+				userdao.update(user);
+				userdao.activateUser(Hasher.getHash(user.getId()));
+				out.write("{\"error\":\"Your email could not be updated.  If the problem persists, please use the contact page to report the bug.\"}");
+				return;
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}				
+		}
 	}
 }

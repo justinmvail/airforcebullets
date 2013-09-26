@@ -19,9 +19,30 @@
   <session-config>
     <session-timeout>11</session-timeout>
   </session-config>
+    
+  
   <error-page>
+    <error-code>401</error-code>
     <location>/error.jsp</location>
-  </error-page>
+</error-page>
+<error-page>
+    <error-code>403</error-code>
+    <location>/error.jsp</location>
+</error-page>
+<error-page>
+    <error-code>404</error-code>
+    <location>/error.jsp</location>
+</error-page>
+<error-page>
+    <error-code>500</error-code>
+    <location>/error.jsp</location>
+</error-page>
+<error-page>
+    <error-code>503</error-code>
+    <location>/error.jsp</location>
+</error-page>
+    
+  
   <servlet>
     <servlet-name>ActivationServlet</servlet-name>
     <servlet-class>servlets.ActivationServlet</servlet-class>

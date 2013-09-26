@@ -68,16 +68,24 @@ public class UserCreationServlet extends HttpServlet {
 			Emailer.sendEmail(user.getEmail(), Constants.EMAIL_WELCOME,
 					Constants.EMAIL_MESSAGE + link, Constants.EMAIL_ADDRESS,
 					Constants.EMAIL_PASSWORD);
+			request.setAttribute("message", "Check Your Email");
+			request.setAttribute("text", "Thank you for signing up for Air Force Bullets!  An email has been sent to your"
+		         +"Air Force email account.  To activate your account, log into your Air Force email"
+		         +"account and open the message you have received from Air Force Bullets.  Inside, you" 
+		         +"will find a link that will activate your account.");
 		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("message", "A problem occured!");
+			request.setAttribute("text", "A Problem occured when creating your account.  This may have been due to a network error."
+					+"  Please try to create your account again.  If the problem persists, please contact airforcebullets@gmail.com ");
 			try {
-				userDAO.delete(user);
-				
+				userDAO.delete(user);							
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
-		response.sendRedirect("checkEmail.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/checkEmail.jsp");
+		dispatcher.forward(request, response);	
 	}
 }

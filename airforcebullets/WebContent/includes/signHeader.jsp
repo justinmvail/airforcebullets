@@ -10,11 +10,11 @@
 	<link rel="stylesheet" href="css/overcast/jquery-ui-1.10.2.custom.css" type="text/css" media="screen, projection"/>		
 	
 	<div id="logo">
-		<h1><a>AIR FORCE BULLETS - BETA</a></h1>				
+		<h1><a>AIR FORCE BULLETS</a></h1>				
 	</div>
 	
 	<ul id="nav">
-		<li><a href="./index.jsp">Sign In</a></li>
+		<li><a href="./">Sign In</a></li>
 		<li><a>Sign Up Info</a></li>
 	</ul>
 	<div id="dialog" title="Air Force Bullets requires data">

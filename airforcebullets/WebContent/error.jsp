@@ -23,7 +23,7 @@
 	
 		<div class="wrap">		
 			<div id="logo">
-				<h1><a>AIR FORCE BULLETS - BETA</a></h1>				
+				<h1><a>AIR FORCE BULLETS</a></h1>				
 			</div>
 			
 			<ul id="nav">

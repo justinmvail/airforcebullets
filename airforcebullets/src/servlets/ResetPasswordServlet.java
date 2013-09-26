@@ -49,7 +49,7 @@ public class ResetPasswordServlet extends HttpServlet {
 				User user = userDAO.findUser(email);
 				user.setPassword(password);
 				userDAO.updatePassword(user);
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("");
 			}else{
 				response.sendRedirect("error.jsp");
 			}

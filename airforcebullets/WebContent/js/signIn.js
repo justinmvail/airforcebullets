@@ -41,7 +41,7 @@ function isPageValid(){
 		return;
 	}
 	if(!isBaseValid()){
-		showError("That is not a valid base. This field has an auto-complete feature.\nBe sure to select one of populated options.");
+		showError("That is not a valid base. This field has an auto-complete feature.\nBe sure to select one of the populated options.");
 		return;
 	}
 	if(!isSquadronValid()){

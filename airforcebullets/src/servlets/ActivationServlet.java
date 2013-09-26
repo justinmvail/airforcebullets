@@ -25,7 +25,7 @@ public class ActivationServlet extends HttpServlet {
 		try {
 			if(userDAO.isHashValid(hashID)){
 				userDAO.activateUser(hashID);
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("");
 			}else{
 				response.sendRedirect("error.jsp");
 			}

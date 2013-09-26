@@ -51,7 +51,7 @@ public class SignInServlet extends HttpServlet {
 				response.sendRedirect("restricted/home.jsp");
 			}else{
 				request.setAttribute("signInMessage", "failed");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/");
 				dispatcher.forward(request, response);				
 			}
 		} catch (SQLException e) {

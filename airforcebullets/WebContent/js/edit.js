@@ -151,6 +151,8 @@ function changeEmail(){
 			success: function(data) {
 				if(data.hasOwnProperty("error")){
 					showError(data.error);
+				}else{
+					window.location = "../";//takes the user back to the home page.
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
