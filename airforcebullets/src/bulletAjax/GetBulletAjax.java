@@ -30,6 +30,8 @@ public class GetBulletAjax extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String type = request.getParameter("type");
+		
 		PrintWriter out = response.getWriter();
 		int userId = -1;
 		if (request.getParameter("userID")==null){//this is for viewing your own bullets
@@ -37,12 +39,19 @@ public class GetBulletAjax extends HttpServlet {
 			userId = user.getId();
 		}else{
 			userId = Integer.parseInt(request.getParameter("userID"));
+			type = "active";
 		}
 		List<Bullet> bullets;
 		
 		BulletDAO bulletdao = new BulletDAOImpl();
 		try {
-			bullets = bulletdao.findBulletsByUser(userId);
+			if(type.equals("all")){
+				bullets = bulletdao.findBulletsByUser(userId);
+			}else if(type.equals("archive")){
+				bullets = bulletdao.findBulletsByUser(userId, true);
+			}else{
+				bullets = bulletdao.findBulletsByUser(userId, false);
+			}
 			Gson gson = new Gson();
 			String json = gson.toJson(bullets);
 			out.println(json);

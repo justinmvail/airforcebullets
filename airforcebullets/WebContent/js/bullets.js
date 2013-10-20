@@ -7,8 +7,6 @@ function Bullet(id,date,catagory,text){
 }
 
 
-
-
 var oTable; 
 //Loads the bullets when the page loads via ajax call
 
@@ -20,6 +18,7 @@ $(function() {
 		changeYear: true
 	});
 });
+
 
 $(document).ready(function() {
 	/* Init the table */   
@@ -87,8 +86,58 @@ $(document).ready(function() {
 		deleteBulletAjax(ids);		
 	});
 	
+	$( "#radio" ).buttonset();
+	
+	$( "#archiveBullets" ).button();
+	
+    $("#activeRadio, #archiveRadio, #allRadio").change(function () {
+//    	alert(this.getAttribute("id") +" selected!");
+    	refreshBulletList(this.getAttribute("id"));
+    });    
+
+    $( "#archiveDialog" ).dialog({
+    	width: 375,
+    	modal: true,
+    	autoOpen: false,
+    	show: 'fade',
+    	hide: 'drop',
+    	buttons: {
+		"Archive All": function() {
+    		$( this ).dialog( "close" );
+    		$("#activeRadio").prop('checked', true);
+    		deleteAllRows();
+    		archive("archiveAll");
+    		location.reload(true);
+		},
+		"Unarchive All": function() {
+			$( this ).dialog( "close" );
+			$("#activeRadio").prop('checked', true);
+			deleteAllRows();
+			archive("unarchiveAll");
+			location.reload(true);
+		},	
+		"Archive by Date": function() {
+			$( this ).dialog( "close" );
+			$("#activeRadio").prop('checked', true);
+			deleteAllRows();
+			archive($("#archiveDate").val());
+			location.reload(true);
+		},	
+	}
+    });
+    
+    $("#archiveBullets").click(function(){
+    	$( "#archiveDialog" ).dialog("open");
+    });
+	
+	$( "#archiveDate" ).datepicker({
+		dateFormat: "M d, yy", 
+		changeMonth: true,
+		changeYear: true
+	});
+
 	//this has to be done onLoad so that user can see his/her bullets immediately. 
-	getBulletsAjax();
+	getBulletsAjax("active");
 
 });
 
@@ -170,9 +219,25 @@ $(function() {
 	});
 });
 
-//Ajax calls---
-function getBulletsAjax(){
+
+function refreshBulletList(type){
 	
+	if(type=="activeRadio"){
+		deleteAllRows();
+		getBulletsAjax("active");
+	}else if (type=="archiveRadio"){
+		deleteAllRows();
+		getBulletsAjax("archive");
+	}else{
+		deleteAllRows();
+		getBulletsAjax("all");
+	}
+	
+}
+
+
+//Ajax calls---
+function getBulletsAjax(type){	
 	showLoading();
 	$.ajax({
 		//async: false,  //might not be necessary 
@@ -180,6 +245,7 @@ function getBulletsAjax(){
 		type: 'GET',
 		url: "../restricted/GetBulletAjax",
 		dataType: 'json',
+		data: {"type": type},
 		success: function(data) {			
 			$.each(data, function(index, value) {
 				var bullet = new Bullet(value.bulletID, value.accomplishedDate, value.catagory, value.bulletText);
@@ -253,7 +319,30 @@ function deleteBulletAjax(ids){
 	});
 }
 
-//front end support for the ajax(makes the dataTable reflect the db)
+function archive(option){	
+	showLoading();
+	$.ajax({
+		async: false,
+		cache: false,
+		type: 'POST',
+		url: "../restricted/ArchiveBulletAjax",
+		dataType: 'json',
+		data: {"option": option},
+		success: function(data) {			
+			//reload the page	
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			showError(jqXHR+" - "+textStatus+" - "+errorThrown);
+		},
+		complete: function(){
+			closeLoading();
+		}
+	});	 
+}
+
+
+
+//front end support for the ajax calls(makes the dataTable reflect the db)
 function addBulletToTable(bullet){
 	$('#bulletTable').dataTable().fnAddData([bullet.date,bullet.catagory,bullet.text,bullet.id]);	
 }
@@ -261,3 +350,14 @@ function addBulletToTable(bullet){
 function updateBulletInTable(bullet, row){
 	$('#bulletTable').dataTable().fnUpdate([bullet.date,bullet.catagory,bullet.text,bullet.id], row);
 }
+
+
+function deleteAllRows(){
+	var oSettings = oTable.fnSettings();
+	var iTotalRecords = oSettings.fnRecordsTotal();
+	for (var i=0;i<=iTotalRecords;i++) {
+		$(oTable).dataTable().fnDeleteRow(0,null,true);
+	}
+}
+
+

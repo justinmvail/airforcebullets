@@ -9,7 +9,9 @@ public class Bullet {
 	private String bulletText;
 	private String catagory;
 	private Date accomplishedDate;
+	private boolean archived;
 	private Date entryDate;
+	
 	
 	public Bullet(int id, int userId, String bulletText, Date accomplishedDate, Date entryDate){
 		setId(id);
@@ -77,6 +79,13 @@ public class Bullet {
 	}
 	public void setAccomplishedDate(Date accomplishedDate) {
 		this.accomplishedDate = accomplishedDate;
+	}
+	public boolean isArchived() {
+		return archived;
+	}
+
+	public void setArchived(boolean archived) {
+		this.archived = archived;
 	}
 	public Date getEntryDate() {
 		return entryDate;

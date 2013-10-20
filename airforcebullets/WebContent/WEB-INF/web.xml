@@ -19,30 +19,26 @@
   <session-config>
     <session-timeout>11</session-timeout>
   </session-config>
-    
-  
   <error-page>
     <error-code>401</error-code>
     <location>/error.jsp</location>
-</error-page>
-<error-page>
+  </error-page>
+  <error-page>
     <error-code>403</error-code>
     <location>/error.jsp</location>
-</error-page>
-<error-page>
+  </error-page>
+  <error-page>
     <error-code>404</error-code>
     <location>/error.jsp</location>
-</error-page>
-<error-page>
+  </error-page>
+  <error-page>
     <error-code>500</error-code>
     <location>/error.jsp</location>
-</error-page>
-<error-page>
+  </error-page>
+  <error-page>
     <error-code>503</error-code>
     <location>/error.jsp</location>
-</error-page>
-    
-  
+  </error-page>
   <servlet>
     <servlet-name>ActivationServlet</servlet-name>
     <servlet-class>servlets.ActivationServlet</servlet-class>
@@ -251,7 +247,6 @@
     <servlet-name>GetNotificationAjax</servlet-name>
     <url-pattern>/restricted/GetNotificationAjax</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>DeleteNotificationAjax</servlet-name>
     <servlet-class>notificationAjax.DeleteNotificationAjax</servlet-class>
@@ -259,5 +254,13 @@
   <servlet-mapping>
     <servlet-name>DeleteNotificationAjax</servlet-name>
     <url-pattern>/restricted/DeleteNotificationAjax</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>ArchiveBulletAjax</servlet-name>
+    <servlet-class>bulletAjax.ArchiveBulletAjax</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ArchiveBulletAjax</servlet-name>
+    <url-pattern>/restricted/ArchiveBulletAjax</url-pattern>
   </servlet-mapping>
 </web-app>

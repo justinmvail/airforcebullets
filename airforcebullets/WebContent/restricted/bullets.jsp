@@ -56,11 +56,28 @@
 		        <table>      
 		        	<tr>  
 		        		<td width=920>
-				        	<div id="table"></div>
+		        			<table>
+		        				<tr>
+		        					<td width=700>
+					        			<div id="radio" >
+										    <input type="radio" id="activeRadio" name="radio" checked="checked" /><label for="activeRadio">Active</label>
+										    <input type="radio" id="archiveRadio" name="radio" /><label for="archiveRadio">Archived</label>
+										    <input type="radio" id="allRadio" name="radio" /><label for="allRadio">All</label>
+										 </div>
+									</td>
+									<td>
+										<button id="archiveBullets" name="archiveBullets">Archive/Unarchive Bullets</button>
+									</td>
+								</tr>
+							 </table>
+							 
+							 <br>
+				        	 <div id="table"></div>
 				        </td>
 			        </tr>
 		        </table>		
-			</div>			
+			</div>		
+			
 			<%@include file="../includes/footer.html" %>	
 		</div>		
 		<div id="dialog-form" title="Create new bullet">  
@@ -81,6 +98,13 @@
 				</table>
 			
 			</form>
+		</div>
+		<div id="archiveDialog" title="Archive Bullets">
+			<p>Below you may change which bullets are in your archive.  You have three options:<br>  
+			(1)You may archive all of your bullets.<br>  (2)You may unarchive all of your bullets.<br>  
+			(3)You may provide a date.  All bullets older(inclusively) than the provided date are archived and
+			all bullets newer than the date are active.  (Note: Today's date is default) </p>
+		 	<div id="archiveDate" align ="center"></div>
 		</div>
 		<div id="loadingDialog" align= "center"></div>	
 		<div id="errorDialog" align= "center"></div>	
