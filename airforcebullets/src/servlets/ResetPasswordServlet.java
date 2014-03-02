@@ -17,7 +17,7 @@ import dataAccess.UserDAOImpl;
 /**
  * Servlet implementation class ResetPasswordServlet
  */
-@WebServlet("/ResetPasswordServlet")
+
 public class ResetPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
